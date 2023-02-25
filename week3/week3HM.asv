@@ -1,0 +1,17 @@
+clear variables;
+close all;
+clc;
+frame = imread("DINGO3_Frame0.jpeg");
+bg = imread("DINGO3_Background.jpeg");
+
+%figure(1);
+%imshow(frame);
+%figure(2);
+%imshow(bg);
+
+%q3
+diff = frame - bg;
+
+lowestPixelValue = min(min(diff))/255.0;
+maxPixelValue = max(max(diff))/255.0;
+disp(lowestPixelValue)

@@ -1,0 +1,21 @@
+importance of horizon line : break down the image or segment the image
+vertical lines always stay vertical and parallel to each other
+perspective effets happen to parallel lines only.
+cons for colour, tells us spatial acuity, gives us fine details.
+image processing : ther will be input and output
+analysis : measurement, e.g. mean
+understanding : output with high level description
+
+point operations and neighbourhood operations
+point transformations : input -> ooutput, brighter +n to all pixels (0 memory operation)
+a is related to mean contrast, b is related to brightness. gain and bias control contrast and brightness respectively.
+darken image : -n, contrast : lower divide, higher multiply.
+lowering the contrrast is not same as darkening the image even though it has some sort of darkening.
+invert or negative : subtract each pixel value from 255, (255 - x)
+non-linear raise contrast : divide by 2, pow 2 * 255
+
+neighbourhood operations: looking at a group of pixels, 8 neightbourhood most common
+neighbourhood window or filter or kernel
+smoothing: filter needs to add up to 1, so brightness stays same
+weighted smooting filter : 
+mean filtering causes blurring
