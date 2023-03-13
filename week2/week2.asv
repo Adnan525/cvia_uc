@@ -60,6 +60,7 @@ fprintf("threhold for b is %f\n", graythresh(b))
 % histogram(testImage)
 % imhist(testImage)
 % imhist(b);
+figure(6)
 t1 = imbinarize(b, 80/255);
 t2 = imbinarize(b, 36/255);
 text = t1-t2;
@@ -115,31 +116,41 @@ title('Gray with mask applied');
 % hardcode the top-left and bottom-right coordinates of the block of chocolate.
 temp = myImg(:,:,3);
 subImgBlue = temp(570:1900, 130:3000);
+subplot(4, 4, 9);
 imshow(subImgBlue);
 title('Subimage Chocolate (Blue Channel)');
+% Show the image histogram of the blue channel
+subplot(4, 4, 10);
+imhist(subImgBlue);
+title('Histogram Subimage (Blue Channel)');
 % Apply the two thresholds again
 % Use a comparison and a bitwise AND.
-subImgBlueChannelBinaryMask = (subImgBlue >= iLowerThreshold) & (subImgBlue <= iUpperThreshold);
+subImgBlueChannelBinaryMask = (subImgBlue >= iLowerThreshold) & ...
+                              (subImgBlue <= iUpperThreshold);
 % Display the blue channel mask for the subimage
+subplot(4, 4, 11);
 imshow(subImgBlueChannelBinaryMask);
 title('Subimage Blue Channel Mask');
 % Apply the binary mask to the blue channel subimage.
 subImgBlueMasked = subImgBlue .* cast(subImgBlueChannelBinaryMask, "uint8");
+subplot(4, 4, 12);
 imshow(subImgBlueMasked);
 title('Subimage Blue Ch. with Mask Applied');
 % Now let's perform histogram equalisation on the thresholded image
-% histogram eq is used to enhance contrast
 subImgBlueHistEq = histeq(subImgBlue);
+subplot(4, 4, 13);
 imshow(subImgBlueHistEq);
 title('Subimage Blue Ch. Hist. Eq.');
 % Display the image histogram after histogram equalisation
+subplot(4, 4, 14);
 imhist(subImgBlueHistEq);
 title('Histogram of Subimage After Hist. Eq.');
 % Apply the binary mask to the histogram equalised blue channel subimage
 subImgBlueMaskedHistEq = subImgBlueHistEq .* ...
                          cast(subImgBlueChannelBinaryMask, "uint8");
-imshow(uint8(255 * mat2gray(subImgBlueMaskedHistEq))); 
-% Scale pixel values to range [0-255]
+subplot(4, 4, 15);
+imshow(uint8(255 * mat2gray(subImgBlueMaskedHistEq))); % Scale pixel values to 
+range [0-255]
 title('Subimage After Hist. Eq. and Mask Applied');
 % NOTE: As the results show here, it might be better to find new threshold
 % values after histogram equalisation. You can explore this on your own.
