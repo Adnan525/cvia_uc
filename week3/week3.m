@@ -2,8 +2,6 @@ clear variables;
 close all;
 clc;
 myImg = imread("barcode_cropped.jpg");
-imshow(myImg);
-
 [r, g, b] = imsplit( myImg);
 greyImage = rgb2gray(myImg);
 images = {r,g,b,greyImage};
@@ -37,7 +35,7 @@ figure(3);
 montage({myImg, newMyImg}, "Size", [1 2]);
 
 % edge detection
-% only works for rgb
+% only works for grey
 canny_img = edge(greyImage, "sobel");
 figure(6)
 imshow(canny_img);
